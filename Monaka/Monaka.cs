@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Monaka.Objects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ log4net.LogManager.GetLogger(
 System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private System.Threading.Timer _timer;
+        private Random _random = new Random();
 
         public Monaka()
         {
@@ -51,6 +53,8 @@ System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
             try
             {
                 _logger.Info("Timer_Callback");
+                var measure = new MeasureSQLServer();
+                measure.Insert(DateTime.Now, Convert.ToSingle(_random.NextDouble()));
             }
             catch(Exception ex)
             {
